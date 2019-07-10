@@ -1,0 +1,24 @@
+{
+  "npmScope": "todosws",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "todosws-e2e": {
+      "tags": []
+    },
+    "todosws": {
+      "tags": []
+    },
+    "api": {
+      "tags": []
+    },
+    "api-interface": {
+      "tags": []
+    }
+  }
+}

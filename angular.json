@@ -1,0 +1,221 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "",
+  "projects": {
+    "todosws": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/workspace:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/todosws",
+      "sourceRoot": "apps/todosws/src",
+      "prefix": "todosws",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/todosws",
+            "index": "apps/todosws/src/index.html",
+            "main": "apps/todosws/src/main.ts",
+            "polyfills": "apps/todosws/src/polyfills.ts",
+            "tsConfig": "apps/todosws/tsconfig.app.json",
+            "assets": [
+              "apps/todosws/src/favicon.ico",
+              "apps/todosws/src/assets"
+            ],
+            "styles": ["apps/todosws/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/todosws/src/environments/environment.ts",
+                  "with": "apps/todosws/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "todosws:build",
+            "proxyConfig": "apps/todosws/proxy.conf.json"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "todosws:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "todosws:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/todosws/tsconfig.app.json",
+              "apps/todosws/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/todosws/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/todosws/jest.config.js",
+            "tsConfig": "apps/todosws/tsconfig.spec.json",
+            "setupFile": "apps/todosws/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "todosws-e2e": {
+      "root": "apps/todosws-e2e",
+      "sourceRoot": "apps/todosws-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/todosws-e2e/cypress.json",
+            "tsConfig": "apps/todosws-e2e/tsconfig.e2e.json",
+            "devServerTarget": "todosws:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "todosws:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/todosws-e2e/tsconfig.e2e.json",
+            "exclude": ["**/node_modules/**", "!apps/todosws-e2e/**"]
+          }
+        }
+      }
+    },
+    "api": {
+      "root": "apps/api",
+      "sourceRoot": "apps/api/src",
+      "projectType": "application",
+      "prefix": "api",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/api",
+            "main": "apps/api/src/main.ts",
+            "tsConfig": "apps/api/tsconfig.app.json",
+            "assets": ["apps/api/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/api/src/environments/environment.ts",
+                  "with": "apps/api/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "api:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/api/tsconfig.app.json",
+              "apps/api/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/api/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/api/jest.config.js",
+            "tsConfig": "apps/api/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "api-interface": {
+      "root": "libs/api-interface",
+      "sourceRoot": "libs\\api-interface\\src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs\\api-interface\\tsconfig.lib.json",
+              "libs/api-interface/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs\\api-interface\\**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/api-interface/jest.config.js",
+            "tsConfig": "libs/api-interface/tsconfig.spec.json"
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "warnings": {
+      "typescriptMismatch": false,
+      "versionMismatch": false
+    },
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "todosws"
+}
