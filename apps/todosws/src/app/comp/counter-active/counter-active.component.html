@@ -1,0 +1,7 @@
+<div class="alert alert-secondary" role="alert">
+  Active Todos
+  <span
+    class="badge badge-primary"
+    [innerText]="(filteredTodos$ | async).length"
+  ></span>
+</div>

@@ -13,6 +13,7 @@ import { CounterComponent } from './comp/counter/counter.component';
 import { TodoListComponent } from './comp/todo-list/todo-list.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { UtilsService } from './services/utils.service';
+import { CounterActiveComponent } from './comp/counter-active/counter-active.component';
 
 // font awesome icons
 UtilsService.initFaIcons();
@@ -22,7 +23,8 @@ UtilsService.initFaIcons();
     AppComponent,
     NavbarComponent,
     CounterComponent,
-    TodoListComponent
+    TodoListComponent,
+    CounterActiveComponent
   ],
   imports: [
     FontAwesomeModule,
