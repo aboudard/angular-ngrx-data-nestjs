@@ -1,7 +1,24 @@
-<div style="text-align:center">
+<todosws-navbar></todosws-navbar>
+<div class="container">
   <h1>Welcome to todosws!</h1>
-  <div>
-    <span [innerText]="counter$ | async"></span>
+  <div class="row">
+    <div class="col-sm-3">
+      <todosws-counter></todosws-counter>
+    </div>
+    <div class="col-sm-9">
+      <img
+        src="../assets/img/ngrx-data-nestjs.png"
+        height="130px"
+        alt="NgRx Data & NestJS"
+      />
+      <p>
+        This is an Angular app built with <a href="https://nx.dev">Nx</a>,
+        <a href="https://docs.nestjs.com/">Nest Server</a> and
+        <a href="https://ngrx.io/guide/data">NgRx Data</a> in monorepo.
+      </p>
+      <todosws-todo-list></todosws-todo-list>
+
+      <div>Message: {{ hello$ | async | json }}</div>
+    </div>
   </div>
 </div>
-<div>Message: {{ hello$ | async | json }}</div>

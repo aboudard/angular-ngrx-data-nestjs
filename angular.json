@@ -26,7 +26,10 @@
               "apps/todosws/src/favicon.ico",
               "apps/todosws/src/assets"
             ],
-            "styles": ["apps/todosws/src/styles.scss"],
+            "styles": [
+              "apps/todosws/src/assets/vendor.scss",
+              "apps/todosws/src/assets/main.scss"
+            ],
             "scripts": []
           },
           "configurations": {

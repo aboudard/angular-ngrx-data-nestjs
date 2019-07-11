@@ -11,10 +11,8 @@ import { Observable } from 'rxjs';
 })
 export class AppComponent implements OnInit {
   hello$ = this.http.get<Message>('/api/hello');
-  counter$: Observable<number>;
-  constructor(private http: HttpClient, private todoService: TodoService) {
-    this.counter$ = todoService.count$;
-  }
+
+  constructor(private http: HttpClient, private todoService: TodoService) {}
   ngOnInit(): void {
     this.todoService.getAll();
   }
