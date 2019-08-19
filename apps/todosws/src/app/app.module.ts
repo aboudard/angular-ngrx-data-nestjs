@@ -14,6 +14,8 @@ import { TodoListComponent } from './comp/todo-list/todo-list.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { UtilsService } from './services/utils.service';
 import { CounterActiveComponent } from './comp/counter-active/counter-active.component';
+import { translocoLoader } from './transloco.loader';
+import { TranslocoModule, TRANSLOCO_CONFIG, TranslocoConfig } from '@ngneat/transloco';
 
 // font awesome icons
 UtilsService.initFaIcons();
@@ -33,9 +35,19 @@ UtilsService.initFaIcons();
     StoreModule.forRoot([]),
     EffectsModule.forRoot([]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    EntityDataModule.forRoot(entityConfig)
+    EntityDataModule.forRoot(entityConfig),
+    TranslocoModule
   ],
-  providers: [],
+  providers: [{
+      provide: TRANSLOCO_CONFIG,
+      useValue: {
+        listenToLangChange: true,
+        defaultLang: 'en',
+        prodMode: environment.production
+      } as TranslocoConfig
+    },
+    translocoLoader
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

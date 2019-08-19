@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   selector: 'todosws-navbar',
@@ -6,16 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
   navbarOpen = false;
 
-  constructor() { }
-  
+  constructor(public transService: TranslocoService) {}
+
   toggleNavbar() {
     this.navbarOpen = !this.navbarOpen;
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
+  setLang(lang: string): void {
+    this.transService.setActiveLang(lang);
+  }
 }

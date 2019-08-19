@@ -10,11 +10,24 @@
   <div class="collapse navbar-collapse" [ngClass]="{ show: navbarOpen }">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="#">Item 1</a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="#">Item 2</a>
+        <div class="btn-group btn-group-sm" role="group">
+          <button
+            [disabled]="transService.getActiveLang() == 'fr'"
+            type="button"
+            (click)="setLang('fr')"
+            class="btn btn-sm btn-outline-light"
+          >
+            <span class="flag-icon flag-icon-fr"></span>
+          </button>
+          <button
+            [disabled]="transService.getActiveLang() == 'en'"
+            type="button"
+            (click)="setLang('en')"
+            class="btn btn-sm btn-outline-light"
+          >
+            <span class="flag-icon flag-icon-gb"></span>
+          </button>
+        </div>
       </li>
     </ul>
   </div>

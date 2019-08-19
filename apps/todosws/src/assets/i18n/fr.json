@@ -1,0 +1,4 @@
+{
+  "title": "Angular et Nest JS avec NgRx Data",
+  "baseline": "Ceci est une application Angular générée avec <a href=\"https://nx.dev\">Nx</a>, <a href=\"https://docs.nestjs.com/\">Nest Server</a> et <a href=\"https://ngrx.io/guide/data\">NgRx Data</a> dans un monorepo."
+}
