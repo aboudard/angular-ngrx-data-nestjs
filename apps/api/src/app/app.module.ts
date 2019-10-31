@@ -3,9 +3,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TodoModule } from './todo/todo.module';
 import { LoggerMiddleware } from './common/logger.middleware';
+import { InMemoryDBModule } from '@nestjs-addons/in-memory-db';
 
 @Module({
-  imports: [TodoModule],
+  imports: [TodoModule, InMemoryDBModule.forRoot({})],
   controllers: [AppController],
   providers: [AppService]
 })
